@@ -48,3 +48,32 @@ class Teacher(Base):
     courses = relationship('Course', back_populates='teacher')
     fees = relationship('Fee', back_populates='teacher')
 
+
+# Define the Parent class for the 'parents' table.
+class Parent(Base):
+    __tablename__ = 'parents'
+
+    # Define columns for parent information.
+    parent_id = Column(Integer, primary_key=True)
+    parent_name = Column(String)
+    parent_contact = Column(String)
+
+    # Define relationships with other tables.
+    students = relationship('Student', back_populates='parent')
+    fees = relationship('Fee', back_populates='parent')
+
+# Define the Course class for the 'courses' table.
+class Course(Base):
+    __tablename__ = 'courses'
+
+    # Define columns for course information.
+    course_id = Column(Integer, primary_key=True)
+    course_name = Column(String)
+    teacher_id = Column(Integer, ForeignKey('teachers.teacher_id'))
+
+    # Define relationships with other tables.
+    teacher = relationship('Teacher', back_populates='courses')
+    students = relationship('Student', secondary='enrollments')
+    enrollments = relationship('Enrollment', back_populates='course')
+
+
