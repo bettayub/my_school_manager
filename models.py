@@ -91,4 +91,30 @@ class Enrollment(Base):
     course = relationship('Course', back_populates='enrollments')
 
 
+# Define the Fee class for the 'fees' table.
+class Fee(Base):
+    __tablename__ = 'fees'
+
+    # Define columns for fee information.
+    fee_id = Column(Integer, primary_key=True)
+    
+    # Move student_fee_balance to the Fee class.
+    student_fee_balance = Column(Integer)
+    
+    student_id = Column(Integer, ForeignKey('students.student_id'))
+    parent_id = Column(Integer, ForeignKey('parents.parent_id'))
+    teacher_id = Column(Integer, ForeignKey('teachers.teacher_id'))
+
+    # Define relationships with other tables.
+    student = relationship('Student', back_populates='fees')
+    parent = relationship('Parent', back_populates='fees')
+    teacher = relationship('Teacher', back_populates='fees')
+
+# Create the database schema based on the defined classes.
+Base.metadata.create_all(engine)
+
+
+
+
+
 
