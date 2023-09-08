@@ -82,6 +82,23 @@ def enroll_student():
     if not course:
         print("Course not found.")
         return
+    
+
+    # Add the student to the course and commit the changes
+    student.courses.append(course)
+    session.commit()
+    print(f"Enrolled {student.student_name} in {course.course_name}.")
+
+# Function to register a new teacher
+def register_teacher():
+    print("Teacher Registration")
+    name = input("Enter teacher's name: ")
+    # Create a new teacher instance and add it to the session
+    teacher = Teacher(teacher_name=name)
+    session.add(teacher)
+    session.commit()
+    print(f"Registered teacher: {name}")
+
 
 
 
