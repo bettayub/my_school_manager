@@ -66,5 +66,23 @@ def view_students_with_marks():
         print(f"Student Name: {student.student_name}, Marks: {student.student_academics}")
 
 
+# Function to enroll a student in a course
+def enroll_student():
+    print("Enroll Student in Course")
+    student_id = int(input("Enter student ID: "))
+    course_id = int(input("Enter course ID: "))
+    
+    student = session.query(Student).filter_by(student_id=student_id).first()
+    course = session.query(Course).filter_by(course_id=course_id).first()
+    
+    if not student:
+        print("Student not found.")
+        return
+    
+    if not course:
+        print("Course not found.")
+        return
+
+
 
 
