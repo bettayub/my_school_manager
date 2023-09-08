@@ -77,3 +77,18 @@ class Course(Base):
     enrollments = relationship('Enrollment', back_populates='course')
 
 
+# Define the Enrollment class for the 'enrollments' table.
+class Enrollment(Base):
+    __tablename__ = 'enrollments'
+
+    # Define columns for enrollment information.
+    enrollment_id = Column(Integer, primary_key=True)
+    student_id = Column(Integer, ForeignKey('students.student_id'))
+    course_id = Column(Integer, ForeignKey('courses.course_id'))
+
+    # Define relationships with other tables.
+    student = relationship('Student', back_populates='enrollments')
+    course = relationship('Course', back_populates='enrollments')
+
+
+
