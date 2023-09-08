@@ -9,7 +9,6 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 # Function to register a new student
 def register_student():
     print("Student Registration")
@@ -20,7 +19,6 @@ def register_student():
     session.add(student)
     session.commit()
     print(f"Registered student: {name}, Admission Number: {adm}")
-
 
 # Function to add academic marks for a student (Teacher)
 def add_academics():
@@ -38,7 +36,6 @@ def add_academics():
     session.commit()
     print(f"Academic marks added for {student.student_name}: {marks}")
 
-
 # Function to view a student's fee balance (Parent)
 def view_fee_balance():
     print("View Fee Balance")
@@ -52,7 +49,7 @@ def view_fee_balance():
     fee_balance = student.student_fee_balance
     print(f"Fee balance for {student.student_name}: {fee_balance}")
 
-    # Function to view all students with their marks (Teacher)
+# Function to view all students with their marks (Teacher)
 def view_students_with_marks():
     print("View Students with Marks")
     students = session.query(Student).all()
@@ -64,7 +61,6 @@ def view_students_with_marks():
     print("\nStudents with Marks:")
     for student in students:
         print(f"Student Name: {student.student_name}, Marks: {student.student_academics}")
-
 
 # Function to enroll a student in a course
 def enroll_student():
@@ -83,7 +79,6 @@ def enroll_student():
         print("Course not found.")
         return
     
-
     # Add the student to the course and commit the changes
     student.courses.append(course)
     session.commit()
@@ -98,7 +93,6 @@ def register_teacher():
     session.add(teacher)
     session.commit()
     print(f"Registered teacher: {name}")
-
 
 # Main function to display the menu and handle user choices
 def main():
@@ -132,9 +126,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
