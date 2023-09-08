@@ -33,3 +33,18 @@ class Student(Base):
     fees = relationship('Fee', back_populates='student')
     enrollments = relationship('Enrollment', back_populates='student')
     courses = relationship('Course', secondary='enrollments', back_populates='students')
+
+
+# Define the Teacher class for the 'teachers' table.
+class Teacher(Base):
+    __tablename__ = 'teachers'
+
+    # Define columns for teacher information.
+    teacher_id = Column(Integer, primary_key=True)
+    teacher_name = Column(String)
+
+    # Define relationships with other tables.
+    students = relationship('Student', back_populates='teacher')
+    courses = relationship('Course', back_populates='teacher')
+    fees = relationship('Fee', back_populates='teacher')
+
