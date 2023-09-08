@@ -10,7 +10,6 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 engine = create_engine('sqlite:///school.db')
 
-
 # Define the Student class for the 'students' table.
 class Student(Base):
     __tablename__ = 'students'
@@ -34,7 +33,6 @@ class Student(Base):
     enrollments = relationship('Enrollment', back_populates='student')
     courses = relationship('Course', secondary='enrollments', back_populates='students')
 
-
 # Define the Teacher class for the 'teachers' table.
 class Teacher(Base):
     __tablename__ = 'teachers'
@@ -47,7 +45,6 @@ class Teacher(Base):
     students = relationship('Student', back_populates='teacher')
     courses = relationship('Course', back_populates='teacher')
     fees = relationship('Fee', back_populates='teacher')
-
 
 # Define the Parent class for the 'parents' table.
 class Parent(Base):
@@ -76,7 +73,6 @@ class Course(Base):
     students = relationship('Student', secondary='enrollments')
     enrollments = relationship('Enrollment', back_populates='course')
 
-
 # Define the Enrollment class for the 'enrollments' table.
 class Enrollment(Base):
     __tablename__ = 'enrollments'
@@ -89,7 +85,6 @@ class Enrollment(Base):
     # Define relationships with other tables.
     student = relationship('Student', back_populates='enrollments')
     course = relationship('Course', back_populates='enrollments')
-
 
 # Define the Fee class for the 'fees' table.
 class Fee(Base):
@@ -112,9 +107,4 @@ class Fee(Base):
 
 # Create the database schema based on the defined classes.
 Base.metadata.create_all(engine)
-
-
-
-
-
 
