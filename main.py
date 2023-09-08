@@ -100,6 +100,41 @@ def register_teacher():
     print(f"Registered teacher: {name}")
 
 
+# Main function to display the menu and handle user choices
+def main():
+    while True:
+        print("\nSchool Management System")
+        print("1. Register Student")
+        print("2. Register Teacher")
+        print("3. Enroll Student in Course")
+        print("4. Add student marks (Teacher)")
+        print("5. View Fee Balance (Parent)")
+        print("6. View Students with Marks (Teacher)")
+        print("7. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            register_student()
+        elif choice == '2':
+            register_teacher()
+        elif choice == '3':
+            enroll_student()
+        elif choice == '4':
+            add_academics()
+        elif choice == '5':
+            view_fee_balance()
+        elif choice == '6':
+            view_students_with_marks()
+        elif choice == '7':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
+
+
 
 
 
