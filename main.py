@@ -52,5 +52,19 @@ def view_fee_balance():
     fee_balance = student.student_fee_balance
     print(f"Fee balance for {student.student_name}: {fee_balance}")
 
+    # Function to view all students with their marks (Teacher)
+def view_students_with_marks():
+    print("View Students with Marks")
+    students = session.query(Student).all()
+
+    if not students:
+        print("No students found.")
+        return
+
+    print("\nStudents with Marks:")
+    for student in students:
+        print(f"Student Name: {student.student_name}, Marks: {student.student_academics}")
+
+
 
 
