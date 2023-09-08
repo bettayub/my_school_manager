@@ -39,3 +39,18 @@ def add_academics():
     print(f"Academic marks added for {student.student_name}: {marks}")
 
 
+# Function to view a student's fee balance (Parent)
+def view_fee_balance():
+    print("View Fee Balance")
+    student_id = int(input("Enter student ID: "))
+    student = session.query(Student).filter_by(student_id=student_id).first()
+    
+    if not student:
+        print("Student not found.")
+        return
+
+    fee_balance = student.student_fee_balance
+    print(f"Fee balance for {student.student_name}: {fee_balance}")
+
+
+
